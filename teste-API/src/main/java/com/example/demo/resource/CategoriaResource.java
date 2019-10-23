@@ -44,14 +44,7 @@ public class CategoriaResource {
 		
 		return ResponseEntity.created(uri).body(categoriaSalva);
 	}
-	
-	/*@GetMapping("/{codigo}")
-	public Optional<Categoria> buscarPeloCodigo(@PathVariable Long codigo) {
-		return categoriaRepository.findById(codigo);
-	}
-	//busca o parametro variavel no final da url e passa como parametro */
-	
-	
+		
 	@GetMapping("/{codigo}")
 	public ResponseEntity<Optional<Categoria>> buscarPeloCodigo(@PathVariable Long codigo) {
 		 Optional<Categoria> categoria = categoriaRepository.findById(codigo);
