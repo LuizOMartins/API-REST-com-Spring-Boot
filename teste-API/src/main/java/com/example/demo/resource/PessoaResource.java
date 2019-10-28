@@ -1,4 +1,3 @@
-
 package com.example.demo.resource;
 
 
@@ -59,14 +58,11 @@ public class PessoaResource {
 		pessoaRepository.deleteById(codigo);
 	}
 
-	
-	@PutMapping("/{codigo}")
+	@PutMapping("/{codigo}")//put recebendo codigo
 	public ResponseEntity<Optional<Pessoa>> atualizar(@PathVariable Long codigo, @Valid @RequestBody Pessoa pessoa){
 			Optional<Pessoa> pessoaSalva =  pessoaRepository.findById(codigo);
 			BeanUtils.copyProperties(pessoa, pessoaSalva, "codigo");
-			pessoaRepository.save(pessoaSalva);
+			pessoaRepository.save(pessoaSalva.get());
 			return ResponseEntity.ok(pessoaSalva);		
 		}
-	
-	//tempo de video aula 7:24
 }

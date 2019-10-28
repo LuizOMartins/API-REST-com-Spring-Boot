@@ -23,28 +23,56 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 @ControllerAdvice
 public class TesteApiExceptionHandler extends ResponseEntityExceptionHandler{
 	
-	
+
 	@Autowired
-	private MessageSource  messageSource;
+	private MessageSource messageSource;
 	
 	@Override
 	protected ResponseEntity<Object> handleHttpMessageNotReadable(HttpMessageNotReadableException ex,
 			HttpHeaders headers, HttpStatus status, WebRequest request) {
-			 String mensagemUsuario = messageSource.getMessage("mensagem.invalida",null,LocaleContextHolder.getLocale());
-			 String mensagemDesenvolvedor = ex.getClass().toString();
-			 List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
-			 return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
+		
+		String mensagemUsuario = messageSource.getMessage("mensagem.invalida", null, LocaleContextHolder.getLocale());
+		String mensagemDesenvolvedor = ex.getCause().toString();
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+		return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
 	}
 	
-	public static class Erro{
+	@Override
+	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
+			HttpHeaders headers, HttpStatus status, WebRequest request) {
+		
+		List<Erro> erros = criarListaDeErros(ex.getBindingResult());
+		return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
+	}
+	
+	@ExceptionHandler({ EmptyResultDataAccessException.class })
+	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex, WebRequest request) {
+		String mensagemUsuario = messageSource.getMessage("recurso.nao-encontrado", null, LocaleContextHolder.getLocale());
+		String mensagemDesenvolvedor = ex.toString();
+		List<Erro> erros = Arrays.asList(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
+	}
+	
+	private List<Erro> criarListaDeErros(BindingResult bindingResult) {
+		List<Erro> erros = new ArrayList<>();
+		
+		for (FieldError fieldError : bindingResult.getFieldErrors()) {
+			String mensagemUsuario = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
+			String mensagemDesenvolvedor = fieldError.toString();
+			erros.add(new Erro(mensagemUsuario, mensagemDesenvolvedor));
+		}
+			
+		return erros;
+	}
+	
+	public static class Erro {
+		
 		private String mensagemUsuario;
 		private String mensagemDesenvolvedor;
 		
-		public Erro( String mensagemUsuario, String mensagemDesenvolvedor) {
-			super();
+		public Erro(String mensagemUsuario, String mensagemDesenvolvedor) {
 			this.mensagemUsuario = mensagemUsuario;
 			this.mensagemDesenvolvedor = mensagemDesenvolvedor;
-			
 		}
 
 		public String getMensagemUsuario() {
@@ -54,36 +82,6 @@ public class TesteApiExceptionHandler extends ResponseEntityExceptionHandler{
 		public String getMensagemDesenvolvedor() {
 			return mensagemDesenvolvedor;
 		}
-	}
-	
-	@Override
-	protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
-			HttpHeaders headers, HttpStatus status, WebRequest request) {
-		List<Erro> erros =  criaListaDeErros(ex.getBindingResult());
-		return handleExceptionInternal(ex, erros, headers, HttpStatus.BAD_REQUEST, request);
 		
 	}
-	
-	@ExceptionHandler({EmptyResultDataAccessException.class})
-	public ResponseEntity<Object> handleEmptyResultDataAccessException(EmptyResultDataAccessException ex,WebRequest request) {
-		 String mensagemUsuario = messageSource.getMessage("recurso.nao-encontrado",null,LocaleContextHolder.getLocale());
-		 String mensagemDesenvolvedor = ex.toString();
-		 List<Erro> erros =  Arrays.asList(new Erro (mensagemUsuario,mensagemDesenvolvedor));
-		return handleExceptionInternal(ex, erros, new HttpHeaders(), HttpStatus.NOT_FOUND, request);
-						
-	}
-	
-	private List<Erro> criaListaDeErros(BindingResult bindingResult){
-		List<Erro> erros = new ArrayList();
-		//.getFieldErrors() - Pegar todos os erros
-		for(FieldError fieldError : bindingResult.getFieldErrors()) {
-			String mensagemUsuario = messageSource.getMessage(fieldError, LocaleContextHolder.getLocale());
-			String mensagemDesenvolvedor = fieldError.toString();
-			erros.add(new Erro(mensagemUsuario, mensagemDesenvolvedor));								
-		}
-
-		return erros;
-	}
-	
-
 }

@@ -8,7 +8,6 @@ import com.example.demo.model.Pessoa;
 
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
 
-	void save(Optional<Pessoa> pessoaSalva);
-
+	
 
 }

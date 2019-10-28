@@ -22,12 +22,10 @@ public class RecursoCriadoListener implements ApplicationListener<RecursoCriadoE
 	}
 
 	private void adicionarHeaderLocation(HttpServletResponse response, Long codigo) {
-		//setar resposta direto para a URI
 		URI uri = ServletUriComponentsBuilder.fromCurrentRequestUri().path("/{codigo}")
 				.buildAndExpand(codigo).toUri();
-			response.setHeader("Location", uri.toASCIIString());
+		response.setHeader("Location", uri.toASCIIString());
 	}
-	
 	
 
 }
