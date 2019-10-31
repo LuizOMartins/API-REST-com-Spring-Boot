@@ -61,7 +61,6 @@ public class PessoaResource {
 	@PutMapping("/{codigo}")//put recebendo codigo
 	public ResponseEntity<Optional<Pessoa>> atualizar(@PathVariable Long codigo, @Valid @RequestBody Pessoa pessoa){
 			Optional<Pessoa> pessoaSalva =  pessoaRepository.findById(codigo);
-			pessoaRepository.save(pessoaSalva.get());
 			Pessoa pessoaSource = pessoaSalva.get();
 			BeanUtils.copyProperties(pessoa, pessoaSource , "codigo");
 			pessoaRepository.save(pessoaSource);
