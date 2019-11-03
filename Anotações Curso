@@ -1,0 +1,381 @@
+
+REST: modelo de arquitetura 
+
+Cartilha REST:
+
+
+Cache: controlador de cache no balanceador, não sendo necessário o processamento de uma nova requisição.
+stateless:  cada requisição é independente e possui suas informações necessárias.
+
+REST: conjunto de boas praticas;
+RESTfull: implemetação.
+
+Recurso: representação abstrata de que uma aplicação gerencia.
+Representação de um recurso:  é o retorno do Servidor.
+
+
+
+GET: Obter um recurso.
+POST: criação de um recurso.
+PUT: atualização.
+DELETE: deletar um recurso.
+
+Resumo dos retorno do HTTP:
+
+1xx:  informações
+2xx:  sucesso
+3xx:  redirecionamento
+4xx: erro no cliente
+5XX:  erro no servidor.
+
+SOAP: (Simple Object Acess Protocol).
+
+
+
+REST X SOAP :
+
+
+
+SOAP:  protocolo.
+- envio de xml utilizando http.
+
+
+
+Modelo de maturidade Richardson:
+
+
+0 - POX:
+
+
+Modelo de Maturidade: Richardson.
+
+Nivel 0:  Request/respose apenas / sem usar o conceito de rescurso.
+Nivel 1: Conceito de recurso.
+Nivel 02:  Padrão já considerado REST: query string /  URL
+Nivel 03: Na resposta vem + de uma URI
+--------------------------------------
+
+--------------------------------------
+HATEOS: links ativos/inativos e que possibilitam uma navegação.
+--------------------------------------
+
+***************************************************************
+
+
+
+
+Premissas: 
+
+
+Configurar projeto Spring fora da STS (Spring Tools Suite)
+https://start.spring.io
+
+Postman:  fazer testes de API.
+https://www.getpostman.com/downloads/
+Teste de requisições Postman:  https://www.mocky.io/
+
+
+
+-> Projeto Maven.
+pom.xml: arquivo de dependencias de projetos Maven.
+
+-> *Database criado direto pelo WorkBench;
+Em aplication.properties:  como usuário root estava sem senha.
+spring.datasource.url=jdbc:mysql://localhost/testeapi?createDatabaseIfNotExist-true&userSSL=false
+spring.datasource.username=root
+
+-> Fazer instalação do MYSQL e depois do workbench corretamento e rodar o script pelo projeto.
+
+<dependency>
+    <groupId>org.flywaydb</groupId>
+    <artifactId>flyway-core</artifactId>
+</dependency>
+
+
+
+---------------------------------------
+
+1 - Introdução ao REST:
+
+
+SOFEA:  Arquitetura Front-End Orientada a Serviços.
+-	Ideia:  levar parte do processamento para o client-side.
+
+REST: é uma forma de integrar sistema.
+REST full:  implementação de REST.
+
+Protocolo HTTP:
+Verbos: GET, POST, PUT...
+URL
+Header: informa o tipo de representação mais adequada.
+Parametros: exemplo: ?uf=PR
+
+--------------------------------------------
+
+2 - Fundamentos de REST:  RECURSO: URL e URI
+
+
+Recurso != da representação do recursos (exemplo:  json, imagem, xml...)
+
+--------------------------------------
+Modelo de Maturidade: Richardson.
+
+Nivel 0:  Request/respose apenas / sem usar o conceito de rescurso.
+Nivel 1: Conceito de recurso.
+Nivel 02:  Padrão já considerado REST: query string /  URL
+Nivel 03: Na resposta vem + de uma URI
+	HATEOS: links ativos/inativos e que possibilitam uma navegação.
+--------------------------------------
+
+->Segurança de API: 
+
+HTTPS;
+Autenticação e autorização;
+basic;
+digest;
+certificados;
+tokens;
+OAuth;
+
+Idempotência: resultado produzido por ele é sempre o mesmo independente das vezes que ele é executado.
+Exemplo:  GET, DELETE, 
+
+-------------------------------------------------
+3 - Primeiras Consultas:
+
+
+Validando um recurso.
+spring.jackson.deserialization.fail-on-unknown-properties=true
+
+------------------------------------------
+
+@ControllerAdvice
+-> deixa disponivel em toda a aplicação.
+
+
+3.10:  Validando valores invalidos com Bean Validation:
+Validar campos da coluna da tabela: mensagem para usuário e para desenvolvedor.
+
+------------------------------------------
+
+Spring Boot: Veio na necessidade de tornar mais simples as configurações dos Projetos.
+
+-> Usa o Tomcap Integrado.
+spring-boot-starter-web é utilizado para desenvolver serviços da web RESTful usando Spring MVC e Tomcat como contêiner do Spring Start Project:
+web;
+dev tools;
+jpa;
+
+
+Código SQL para criação do Banco de Dados:
+
+PROPERTIES: spring.datasource.url=jdbc:mysql://localhost:3306/testeapi?createDatabaseIfNotExist=true&userSSL=false?useTimezone=true&serverTimezone=America/Sao_Paulo
+
+-> CADA VEZ QUE UM SCRIPT SQL FOR ADICIONADO DEVE SER CRIADO UMA NOVA VERSÃO DO ARQUIVO.
+
+CREATE TABLE categoria(
+codigo BIGINT(20) PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+INSERT INTO categoria (nome) values ('Lazer');
+INSERT INTO categoria (nome) values ('Alimentação');
+INSERT INTO categoria (nome) values ('Supermercado');
+INSERT INTO categoria (nome) values ('Farmácia');
+INSERT INTO categoria (nome) values ('Outros');
+INSERT INTO categoria (nome) values ('Outros Funcionando');
+
+----------------------------------------------------------
+
+Flyway:  Migração de dados com Incremental.
+
+Hibernet:  Hibernate é um framework para o mapeamento objeto-relaciona.
+Classe --> BD. via anotaçoes/XML.
+
+
+Por que usar um incremental:  quando é criado e depois é necessário apagar uma coluna por exemplo, com hibernet isso não é possivel, em uma migração de dados incrental isso é possível. --> mais trabalho, mais facilidade.
+
+------------------------------------------------------
+
+JpaRepository: ja possui CRUD feito e diversos rescuros. não precisa de implamentação o propria JPA ja faz isso em tempo de execução
+
+-------------------------------------------------------
+retorno de coleção vazia.
+
+	@GetMapping
+	public ResponseEntity<?> listar(){
+		List<Categoria> categorias = categoriaRepository.findAll();
+		return !categorias.isEmpty() ? ResponseEntity.ok(categorias) : ResponseEntity.noContent().build(); 
+	}
+-------------------------------------------------------
+
+Quando um  recurso é enviado precisamos dizer como resgata-lo;
+
+
+------------------------------------------
+
+Validando um recurso.
+spring.jackson.deserialization.fail-on-unknown-properties=true
+
+------------------------------------------
+
+@ControllerAdvice
+-> deixa disponivel em toda a aplicação.
+
+
+3.10:  Validando valores invalidos com Bean Validation:
+Validar campos da coluna da tabela: mensagem para usuário e para desenvolvedor.
+
+------------------------------------------
+
+Spring Boot: Veio na necessidade de tornar mais simples as configurações dos Projetos.
+
+-> Usa o Tomcap Integrado.
+spring-boot-starter-web é utilizado para desenvolver serviços da web RESTful usando Spring MVC e Tomcat como contêiner do aplicativo integrado.
+Já traz o Spring Framework;
+Já traz o Spring MVC;
+
+
+O que é Maven:gerenciador de dependencias(faz download);
+POM:  project object model. XML
+
+O que é Spring Framework: Spring é um framework Open-Source para facilitar a programação Java. Possui divesos modulos, como Spring Data, Spring Boot, Spring Securyti...
+
+
+O que é Spring MVC: é o Spring no padrão MVC.
+AULA: 3.11 -  Desafio.
+
+Inserir Tabela Pessoa:
+
+No BD é uma unica Tabela,  com campos de pessoa e endereço.
+
+
+
+
+3.12
+Criação do Evento e listener do Evento;
+
+@Component:  informar para ser um componente do Spring.
+
+------------------------------------------------
+
+
+4 - Atualização de Recursos.
+
+
+ENTENDIMENTO DO PROJETO:
+
+@Embedded: significa que uma classe sera embutida por uma entidade (em orientação entidade é uma tabela no BD).
+@Autowired:  informas os pontos de injeção.
+JPA: ->  Repository: já possui um CRUD pronto.
+
+Response Entity:
+->representa toda resposta HTTP.
+
+@GetMapping:  mapear uma solicitação GET.
+Optional <T> // = // .getById();
+getById retorna um Optional  ->  pode retornar null e iss já é tratado.
+
+Servlet: classses java para tratar requisições vindas de um browser por exemplo. são utilizadas no ambiente de servidor.
+
+publisher:  publica o evento para todos os listeners.
+
+
+VERBO na requisição HTTP o que  é: o tipo de requisição, podendo ser GET,PUT,DELETE...
+
+*******************************************************************************
+
+
+HttpStatus.NOT_FOUND -> retornar um 404 not found.
+Atualização ded Recurso REST: 
+
+Atualização Parcial de dados com PATCH: ideia é passar somente o que você precisa atualizar.
+
+Atualizaço  PUT. (utilizada)
+Meotodologia de atualização parcial de um recuro vai ser especificando o recurso pela URL.
+Por exemplo:
+
+localhost:8080/pessoas/{codigo}/endereco
+
+
+
+------------------- TESTE PUT
+{
+	"nome":"Pedro Silva Barbosa",
+	"endereco" : {
+		"logradouro" : "Av Liberdade",
+		"numero": "340",
+		"complemento": "Apto 202",
+		"bairro": "Tubalina",
+		"cep": "77.400-12",
+		"cidade": "Porto Alegre",
+		"estado": "RS"
+	},
+	"ativo":  true
+}
+
+---------------------
+
+Nesse metodo é passado o objeto antigo/objeto novo e ignorando o atributo codigo.
+BeanUtils.copyProperties(pessoa, pessoaSalva, "codigo"); 
+
+
+
+------------------
+aula  4.3: 7:15 MINUTOS 
+
+ERRO PUT COM 50 :
+
+{
+    "nome": "CAP CAP CAP",
+    "endereco": {
+        "logradouro": "Rua do Abacaxi",
+        "numero": "10",
+        "complemento": null,
+        "bairro": "Brasil",
+        "cep": "38.400-12",
+        "cidade": "Londrina",
+        "estado": "MG"
+    },
+    "ativo": true
+}
+
+
+-> fazer mostrar  404 not found pelo handler global da API.
+
+REVENDO TRATAMENTO DE EXCEÇÕES: 
+Trarando erros de forma mais geral para reaprovaitar código.
+Usando ExceptionHandler: captura exceções
+->captura exceções de resposta de entidades.
+4.1 -  delete quando nao tem a entidade.
+
+
+
+O que é o controlador:
+
+Controlador: metodo com a anotação da URI.
+por exemplo:
+@PutMapping("/codigo")
+public pegarPessoa(){
+}
+
+--------------------------------------
+
+1°Selecionar a mensagem de erro.
+
+2° Na classe ExcptionHadler:
+passar o erro para o metodo hanldler.
+
+-> array de exceções:
+@ExceptionHandler({})
+
+------------------
+
+
+
+@Service
+
+
+
+
+**4.4*
