@@ -30,8 +30,6 @@ Resumo dos retorno do HTTP:
 
 SOAP: (Simple Object Acess Protocol).
 
-
-
 REST X SOAP :
 
 
@@ -322,24 +320,7 @@ BeanUtils.copyProperties(pessoa, pessoaSalva, "codigo");
 
 
 ------------------
-aula  4.3: 7:15 MINUTOS 
-
-ERRO PUT COM 50 :
-
-{
-    "nome": "CAP CAP CAP",
-    "endereco": {
-        "logradouro": "Rua do Abacaxi",
-        "numero": "10",
-        "complemento": null,
-        "bairro": "Brasil",
-        "cep": "38.400-12",
-        "cidade": "Londrina",
-        "estado": "MG"
-    },
-    "ativo": true
-}
-
+aula  4.3:
 
 -> fazer mostrar  404 not found pelo handler global da API.
 
@@ -370,12 +351,6 @@ passar o erro para o metodo hanldler.
 @ExceptionHandler({})
 
 ------------------
-
-
-
 @Service
-
-
-
 
 **4.4*

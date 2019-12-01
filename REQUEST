@@ -1,0 +1,17 @@
+ERRO PUT COM 50 :
+
+{
+    "nome": "CAP CAP CAP",
+    "endereco": {
+        "logradouro": "Rua do Abacaxi",
+        "numero": "10",
+        "complemento": null,
+        "bairro": "Brasil",
+        "cep": "38.400-12",
+        "cidade": "Londrina",
+        "estado": "MG"
+    },
+    "ativo": true
+}
+
+
