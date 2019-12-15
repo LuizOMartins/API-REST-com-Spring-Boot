@@ -50,7 +50,7 @@ Modelo de Maturidade: Richardson.
 Nivel 0:  Request/respose apenas / sem usar o conceito de rescurso.
 Nivel 1: Conceito de recurso.
 Nivel 02:  Padrão já considerado REST: query string /  URL
-Nivel 03: Na resposta vem + de uma URI
+Nivel 03: Na resposta vem + de uma URI (URI: URL  + protocolo)
 --------------------------------------
 
 --------------------------------------
@@ -298,21 +298,7 @@ localhost:8080/pessoas/{codigo}/endereco
 
 
 ------------------- TESTE PUT
-{
-	"nome":"Pedro Silva Barbosa",
-	"endereco" : {
-		"logradouro" : "Av Liberdade",
-		"numero": "340",
-		"complemento": "Apto 202",
-		"bairro": "Tubalina",
-		"cep": "77.400-12",
-		"cidade": "Porto Alegre",
-		"estado": "RS"
-	},
-	"ativo":  true
-}
 
----------------------
 
 Nesse metodo é passado o objeto antigo/objeto novo e ignorando o atributo codigo.
 BeanUtils.copyProperties(pessoa, pessoaSalva, "codigo"); 

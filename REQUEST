@@ -15,3 +15,20 @@ ERRO PUT COM 50 :
 }
 
 
+-----------------------------
+
+
+{
+    "nome":"Pedro Silva Barbosa",
+    "endereco" : {
+        "logradouro" : "Av Liberdade",
+        "numero": "340",
+        "complemento": "Apto 202",
+        "bairro": "Tubalina",
+        "cep": "77.400-12",
+        "cidade": "Porto Alegre",
+        "estado": "RS"
+    },
+    "ativo":  true
+}
+
