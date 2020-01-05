@@ -32,13 +32,12 @@ public class CategoriaResource {
 	
 	@GetMapping
 	public List<Categoria> listar(){
-		return  categoriaRepository.findAll();
+		return categoriaRepository.findAll();
 	}
 	
 	@Autowired
 	private ApplicationEventPublisher publisher;
 	
-
 	@PostMapping
 	public ResponseEntity<Categoria> crair(@Valid @RequestBody Categoria categoria,  HttpServletResponse response) {
 		Categoria categoriaSalva = categoriaRepository.save(categoria);

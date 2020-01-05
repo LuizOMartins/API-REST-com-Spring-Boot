@@ -337,6 +337,6 @@ passar o erro para o metodo hanldler.
 @ExceptionHandler({})
 
 ------------------
-@Service
 
-**4.4*
+Última aula:  5.1 -  Criação de migração e entidade de lançamento.
+
