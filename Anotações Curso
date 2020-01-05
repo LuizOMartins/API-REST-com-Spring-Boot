@@ -297,7 +297,6 @@ passar o erro para o metodo hanldler.
 
 --------------------------------------
 
-Última aula:  5.1 -  Criação de migração e entidade de lançamento.
 
 
 ######################################################################
@@ -336,3 +335,61 @@ Publisher -> publicar um evento.
 
 
 ######################################################################
+
+INSERT INTO categoria (nome) values ('Lazer');
+INSERT INTO categoria (nome) values ('Alimentação');
+INSERT INTO categoria (nome) values ('Supermercado');
+INSERT INTO categoria (nome) values ('Farmácia');
+INSERT INTO categoria (nome) values ('Outros');
+
+------------------
+
+show databases;
+use testeapi;
+show tables;
+
+------------------
+
+
+
+------------------
+Exceção:  FlayWay: FlywayException: Detected failed migration to version 1.0
+
+select * from testeapi.flyway_schema_history;
+
+delete from flyway_schema_history where installed_rank = 4;
+-> deletar uma migração que esta dando erro.
+------------------
+
+
+
+Desafio:
+
+getAll lancamentos 
+get lancamentobyId
+
+
+Suporte para as datas:
+Jackson:
+Hibernate:
+
+Desafio 2:  
+Implementar criação de novo lancamento:
+Exemplo:
+
+{
+	"descricao":"Prêmio semestral",
+	"dataVencimento":"2017-07-10",
+	"valor":1000,
+	"tipo":"RECEITA",
+	"categoria":{
+		"codigo":5
+	},
+	"pessoa":{
+		"codigo":1
+	}
+}
+
+
+Última aula:  5.4 validando inconsistências:
+

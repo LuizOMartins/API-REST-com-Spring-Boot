@@ -1,0 +1,247 @@
+{
+	"info": {
+		"_postman_id": "2fbe25ea-2546-4e4e-a26c-0eb299b9d90a",
+		"name": "Spring API",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "listar categorias",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/categorias",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"categorias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Nova Categoria",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"nome\" : \"\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/categorias",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"categorias"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PUT ATUALIZAR PESSOA",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"nome\": \"Luiz Eduardo de Oliveira\",\r\n    \"endereco\": {\r\n        \"logradouro\": \"Rua do Abacaxi\",\r\n        \"numero\": \"10\",\r\n        \"complemento\": null,\r\n        \"bairro\": \"Brasil\",\r\n        \"cep\": \"38.400-12\",\r\n        \"cidade\": \"Londrina\",\r\n        \"estado\": \"MG\"\r\n    },\r\n    \"ativo\": true\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pessoas/1",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas",
+						"1"
+					]
+				},
+				"description": "put"
+			},
+			"response": []
+		},
+		{
+			"name": "GET PESSOA",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pessoas/4",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas",
+						"4"
+					]
+				},
+				"description": "Atualizar Pessoa"
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE PESSOA",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/pessoas/10",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas",
+						"10"
+					]
+				},
+				"description": "DELETE PESSOA"
+			},
+			"response": []
+		},
+		{
+			"name": "Atualiza Ativo pessoa pelo codigo",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "false",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pessoas/4/ativo",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas",
+						"4",
+						"ativo"
+					]
+				},
+				"description": "Atualiza Ativo pessoa pelo codigo"
+			},
+			"response": []
+		},
+		{
+			"name": "BUSCA LANCAMENTOS POR ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/lancamentos/12",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lancamentos",
+						"12"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "CRIAR LANCAMENTO",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\t\"descricao\":\"Prêmio semestral\",\r\n\t\"dataVencimento\":\"2017-07-10\",\r\n\t\"valor\":1000,\r\n\t\"tipo\":\"RECEITA\",\r\n\t\"categoria\":{\r\n\t\t\"codigo\":5\r\n\t},\r\n\t\"pessoa\":{\r\n\t\t\"codigo\":1\r\n\t}\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/lancamentos",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lancamentos"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
