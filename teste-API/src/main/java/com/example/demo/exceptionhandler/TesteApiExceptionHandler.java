@@ -70,7 +70,6 @@ public class TesteApiExceptionHandler extends ResponseEntityExceptionHandler{
 			String mensagemDesenvolvedor = fieldError.toString();
 			erros.add(new Erro(mensagemUsuario, mensagemDesenvolvedor));
 		}
-			
 		return erros;
 	}
 	

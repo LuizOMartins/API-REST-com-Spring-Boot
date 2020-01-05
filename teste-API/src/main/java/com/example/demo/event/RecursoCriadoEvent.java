@@ -5,7 +5,7 @@ import javax.servlet.http.HttpServletResponse;
 import org.springframework.context.ApplicationEvent;
 
 public class RecursoCriadoEvent extends ApplicationEvent{
-
+	
 	private HttpServletResponse response;
 	private Long codigo;
 	
@@ -18,13 +18,10 @@ public class RecursoCriadoEvent extends ApplicationEvent{
 	public HttpServletResponse getResponse() {
 		return response;
 	}
-
-
 	public Long getCodigo() {
 		return codigo;
 	}
-
-
 	private static final long serialVersionUID = 1L;
 
+	//Evento para criar o HeaderLocation
 }

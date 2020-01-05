@@ -1,7 +1,32 @@
+Diferenças:
 
-REST: modelo de arquitetura 
+REST API: uma arquiterura de criação de Web Services.
 
-Cartilha REST:
+API: Sem utilizar a internet.  Por exemplo:  Kernel Linux.
+
+Web Service: software para integração e comunicação de sistemas. (tem que utilizar internet)
+
+RESTfull:  Web Service que implamente a arquiterura REST.
+
+
+Conhecendo o projeto:
+
+CRUD de lançamentos.
+- Lançamento de contas, positivas e negativas.
+
+-------------------------------
+Premissas: 
+
+
+Configurar projeto Spring fora da STS (Spring Tools Suite)
+https://start.spring.io
+
+Postman:  fazer testes de API.
+https://www.getpostman.com/downloads/
+Teste de requisições Postman:  https://www.mocky.io/
+
+
+-------------------------------
 
 
 Cache: controlador de cache no balanceador, não sendo necessário o processamento de uma nova requisição.
@@ -28,21 +53,10 @@ Resumo dos retorno do HTTP:
 4xx: erro no cliente
 5XX:  erro no servidor.
 
+
 SOAP: (Simple Object Acess Protocol).
-
-REST X SOAP :
-
-
-
 SOAP:  protocolo.
 - envio de xml utilizando http.
-
-
-
-Modelo de maturidade Richardson:
-
-
-0 - POX:
 
 
 Modelo de Maturidade: Richardson.
@@ -51,27 +65,13 @@ Nivel 0:  Request/respose apenas / sem usar o conceito de rescurso.
 Nivel 1: Conceito de recurso.
 Nivel 02:  Padrão já considerado REST: query string /  URL
 Nivel 03: Na resposta vem + de uma URI (URI: URL  + protocolo)
---------------------------------------
 
 --------------------------------------
+
 HATEOS: links ativos/inativos e que possibilitam uma navegação.
 --------------------------------------
 
 ***************************************************************
-
-
-
-
-Premissas: 
-
-
-Configurar projeto Spring fora da STS (Spring Tools Suite)
-https://start.spring.io
-
-Postman:  fazer testes de API.
-https://www.getpostman.com/downloads/
-Teste de requisições Postman:  https://www.mocky.io/
-
 
 
 -> Projeto Maven.
@@ -99,9 +99,6 @@ spring.datasource.username=root
 SOFEA:  Arquitetura Front-End Orientada a Serviços.
 -	Ideia:  levar parte do processamento para o client-side.
 
-REST: é uma forma de integrar sistema.
-REST full:  implementação de REST.
-
 Protocolo HTTP:
 Verbos: GET, POST, PUT...
 URL
@@ -115,16 +112,6 @@ Parametros: exemplo: ?uf=PR
 
 Recurso != da representação do recursos (exemplo:  json, imagem, xml...)
 
---------------------------------------
-Modelo de Maturidade: Richardson.
-
-Nivel 0:  Request/respose apenas / sem usar o conceito de rescurso.
-Nivel 1: Conceito de recurso.
-Nivel 02:  Padrão já considerado REST: query string /  URL
-Nivel 03: Na resposta vem + de uma URI
-	HATEOS: links ativos/inativos e que possibilitam uma navegação.
---------------------------------------
-
 ->Segurança de API: 
 
 HTTPS;
@@ -136,7 +123,7 @@ tokens;
 OAuth;
 
 Idempotência: resultado produzido por ele é sempre o mesmo independente das vezes que ele é executado.
-Exemplo:  GET, DELETE, 
+Exemplo:  GET, DELETE...
 
 -------------------------------------------------
 3 - Primeiras Consultas:
@@ -241,16 +228,13 @@ O que é Spring Framework: Spring é um framework Open-Source para facilitar a p
 
 
 O que é Spring MVC: é o Spring no padrão MVC.
-AULA: 3.11 -  Desafio.
 
 Inserir Tabela Pessoa:
 
 No BD é uma unica Tabela,  com campos de pessoa e endereço.
 
+------------------------------------------------
 
-
-
-3.12
 Criação do Evento e listener do Evento;
 
 @Component:  informar para ser um componente do Spring.
@@ -258,7 +242,67 @@ Criação do Evento e listener do Evento;
 ------------------------------------------------
 
 
-4 - Atualização de Recursos.
+*******************************************************************************
+
+
+HttpStatus.NOT_FOUND -> retornar um 404 not found.
+Atualização ded Recurso REST: 
+
+Atualização Parcial de dados com PATCH: ideia é passar somente o que você precisa atualizar.
+
+Atualizaço  PUT. (utilizada)
+Meotodologia de atualização parcial de um recuro vai ser especificando o recurso pela URL.
+Por exemplo:
+
+localhost:8080/pessoas/{codigo}/endereco
+
+------------------- TESTE PUT
+
+
+Nesse metodo é passado o objeto antigo/objeto novo e ignorando o atributo codigo.
+BeanUtils.copyProperties(pessoa, pessoaSalva, "codigo"); 
+
+
+------------------
+
+
+-> fazer mostrar  404 not found pelo handler global da API.
+
+REVENDO TRATAMENTO DE EXCEÇÕES: 
+Trarando erros de forma mais geral para reaprovaitar código.
+Usando ExceptionHandler: captura exceções
+->captura exceções de resposta de entidades.
+4.1 -  delete quando nao tem a entidade.
+
+O que é o controlador:
+
+Controlador: metodo com a anotação da URI.
+por exemplo:
+@PutMapping("/codigo")
+public pegarPessoa(){
+}
+
+--------------------------------------
+
+Criar Tratamento de erro:
+
+
+1°Selecionar a mensagem de erro.
+
+2° Na classe ExcptionHadler:
+passar o erro para o metodo hanldler.
+
+-> array de exceções:
+@ExceptionHandler({})
+
+--------------------------------------
+
+Última aula:  5.1 -  Criação de migração e entidade de lançamento.
+
+
+######################################################################
+Revisão da API Spring Boot:
+
 
 
 ENTENDIMENTO DO PROJETO:
@@ -281,62 +325,14 @@ publisher:  publica o evento para todos os listeners.
 
 VERBO na requisição HTTP o que  é: o tipo de requisição, podendo ser GET,PUT,DELETE...
 
-*******************************************************************************
+
+Eventos Spring:  
 
 
-HttpStatus.NOT_FOUND -> retornar um 404 not found.
-Atualização ded Recurso REST: 
-
-Atualização Parcial de dados com PATCH: ideia é passar somente o que você precisa atualizar.
-
-Atualizaço  PUT. (utilizada)
-Meotodologia de atualização parcial de um recuro vai ser especificando o recurso pela URL.
-Por exemplo:
-
-localhost:8080/pessoas/{codigo}/endereco
+ApplicationEvent: criar um evento.
+ApplicationListener: Ouvir um evento -> @Component
+Publisher -> publicar um evento.
 
 
 
-------------------- TESTE PUT
-
-
-Nesse metodo é passado o objeto antigo/objeto novo e ignorando o atributo codigo.
-BeanUtils.copyProperties(pessoa, pessoaSalva, "codigo"); 
-
-
-
-------------------
-aula  4.3:
-
--> fazer mostrar  404 not found pelo handler global da API.
-
-REVENDO TRATAMENTO DE EXCEÇÕES: 
-Trarando erros de forma mais geral para reaprovaitar código.
-Usando ExceptionHandler: captura exceções
-->captura exceções de resposta de entidades.
-4.1 -  delete quando nao tem a entidade.
-
-
-
-O que é o controlador:
-
-Controlador: metodo com a anotação da URI.
-por exemplo:
-@PutMapping("/codigo")
-public pegarPessoa(){
-}
-
---------------------------------------
-
-1°Selecionar a mensagem de erro.
-
-2° Na classe ExcptionHadler:
-passar o erro para o metodo hanldler.
-
--> array de exceções:
-@ExceptionHandler({})
-
-------------------
-
-Última aula:  5.1 -  Criação de migração e entidade de lançamento.
-
+######################################################################
