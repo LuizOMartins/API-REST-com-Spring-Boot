@@ -20,7 +20,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.event.RecursoCriadoEvent;
 import com.example.demo.model.Lancamento;
-import com.example.demo.model.Pessoa;
 import com.example.demo.repository.LancamentoRepository;
 
 @RestController

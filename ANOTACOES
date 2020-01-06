@@ -369,10 +369,6 @@ getAll lancamentos
 get lancamentobyId
 
 
-Suporte para as datas:
-Jackson:
-Hibernate:
-
 Desafio 2:  
 Implementar criação de novo lancamento:
 Exemplo:
@@ -391,5 +387,8 @@ Exemplo:
 }
 
 
-Última aula:  5.4 validando inconsistências:
 
+Apache Commons: usado para captura o erro.
+
+
+5.5 validando lançamento com Bean Validation:
