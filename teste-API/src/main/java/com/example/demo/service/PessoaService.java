@@ -22,8 +22,6 @@ public class PessoaService {
 		return pessoaRepository.save(pessoaSource);
 	    
 	}
-
-
 	public void atualizarPropriedadeAtivo(Long codigo, Boolean ativo) {
 		Pessoa pessoaSource = buscarPessoaPeloCodigo(codigo);
 		pessoaSource.setAtivo(ativo);
@@ -31,7 +29,7 @@ public class PessoaService {
 					
 	}
 	
-	private Pessoa buscarPessoaPeloCodigo(Long codigo) {
+	public Pessoa buscarPessoaPeloCodigo(Long codigo) {
 		Optional<Pessoa> pessoaSalva =  pessoaRepository.findById(codigo);
 		Pessoa pessoaSource = pessoaSalva.get();
 		if (pessoaSalva == null )

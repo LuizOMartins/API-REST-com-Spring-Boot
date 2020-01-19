@@ -387,8 +387,36 @@ Exemplo:
 }
 
 
-
 Apache Commons: usado para captura o erro.
 
+---------------------------------------------------------------------------------------------
 
-5.5 validando lançamento com Bean Validation:
+Bean Validation:
+Regra de negocio: Validacao de lancamento pelo status da pessoa. 
+
+5.7: -> Implementando pesquisa de lancamentos com Metamodel.
+
+
+Spring Data JPA: ?
+
+@PersistenceContext
+private EntityManager manager; ?
+
+CriteriasJPA : ?
+CriteriaBuilder ? 
+
+JPA Metamodel: analisa entidade e cria classe com atributo que representa os campos da coluna.
+
+
+.m2 o que é essa pasta ?
+-> dependencia adicionada
+<dependency>
+	<groupId>org.hibernate</groupId>
+	<artifactId>hibernate-jpamodelagen</artifactId>
+	<version>5.0.12.Final</version>
+</dependency>
+->versões compativeis
+
+Buscando Lancamentos:
+localhost:8080/lancamentos?descricao=mensal
+localhost:8080/lancamentos?dataVencimentoDe=2017-06-10
