@@ -118,14 +118,14 @@
 					}
 				},
 				"url": {
-					"raw": "localhost:8080/pessoas/4",
+					"raw": "localhost:8080/pessoas/7",
 					"host": [
 						"localhost"
 					],
 					"port": "8080",
 					"path": [
 						"pessoas",
-						"4"
+						"7"
 					]
 				},
 				"description": "Atualizar Pessoa"
@@ -222,7 +222,7 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n\t\"descricao\":\"Prêmio semestral\",\r\n\t\"dataVencimento\":\"2017-07-10\",\r\n\t\"valor\":1000,\r\n\t\"tipo\":\"RECEITA\",\r\n\t\"categoria\":{\r\n\t\t\"codigo\":5\r\n\t},\r\n\t\"pessoa\":{\r\n\t\t\"codigo\":1\r\n\t}\r\n}",
+					"raw": "{\r\n\t\"descricao\":\"Prêmio semestral\",\r\n\t\"dataVencimento\":\"2017-07-10\",\r\n\t\"valor\":1000,\r\n\t\"tipo\":\"RECEITA\",\r\n\t\"categoria\":{\r\n\t\t\"codigo\":5\r\n\t},\r\n\t\"pessoa\":{\r\n\t\t\"codigo\":\r\n\t}\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -237,6 +237,133 @@
 					"port": "8080",
 					"path": [
 						"lancamentos"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Status Pessoa ",
+			"request": {
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "false",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/pessoas/7/ativo",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"pessoas",
+						"7",
+						"ativo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "DELETE LANCAMENTO",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/lancamentos/22",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lancamentos",
+						"22"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "LANCAMENTOS COM FILTRO",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "localhost:8080/lancamentos?dataVencimentoDe=2017-04-07",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lancamentos"
+					],
+					"query": [
+						{
+							"key": "dataVencimentoDe",
+							"value": "2017-04-07"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "PAGINACAO",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/lancamentos/?size=3&page=2",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"lancamentos",
+						""
+					],
+					"query": [
+						{
+							"key": "size",
+							"value": "3"
+						},
+						{
+							"key": "page",
+							"value": "2"
+						}
 					]
 				}
 			},

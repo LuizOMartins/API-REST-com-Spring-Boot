@@ -390,25 +390,31 @@ Exemplo:
 Apache Commons: usado para captura o erro.
 
 ---------------------------------------------------------------------------------------------
-
-Bean Validation:
 Regra de negocio: Validacao de lancamento pelo status da pessoa. 
 
-5.7: -> Implementando pesquisa de lancamentos com Metamodel.
+Bean Validation: Validação de dados de entrada do usuário no spring.
+
+@Valid-> inicia automaticamente a validacao do Argumento.
+- se não validar automaticamento o Spring lança uma Exceção.
 
 
-Spring Data JPA: ?
+@PersistenceContext: injetar dependencias.
+private EntityManager manager:
 
-@PersistenceContext
-private EntityManager manager; ?
+EntityManager: 
+- controla a transacao.
+- spinrg abre e fecha automaticamento a transcao usando o JPA.
 
-CriteriasJPA : ?
+
+CriteriasJPA : uma maneira de definir consultar JPA. 
 CriteriaBuilder ? 
 
 JPA Metamodel: analisa entidade e cria classe com atributo que representa os campos da coluna.
 
 
-.m2 o que é essa pasta ?
+.m2 o que é essa pasta: 
+
+
 -> dependencia adicionada
 <dependency>
 	<groupId>org.hibernate</groupId>
@@ -420,3 +426,18 @@ JPA Metamodel: analisa entidade e cria classe com atributo que representa os cam
 Buscando Lancamentos:
 localhost:8080/lancamentos?descricao=mensal
 localhost:8080/lancamentos?dataVencimentoDe=2017-06-10
+
+
+
+5.8: Desafio remoção de lançamentos. - feito;
+
+5.9:  Paginação de lançamento.
+-> Fazendo o tratamento de parâmetros recebidos na URL.
+Pegeable
+
+
+---------------------------------------------------------------------------------------------
+
+Autenticação
+
+6.1 Autenticacao Basica.
