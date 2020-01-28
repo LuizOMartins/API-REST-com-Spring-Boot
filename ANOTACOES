@@ -463,3 +463,6 @@ Erro: Encoded password does not look like BCrypt
 	<artifactId>spring-security-oauth2</artifactId>
 	<version>2.3.3.RELEASE</version>
 </dependency>
+
+Tempo 6.3  -14:53
+ERRO REQUISIÇÃO ERRO
