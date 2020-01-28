@@ -438,6 +438,28 @@ Pegeable
 
 ---------------------------------------------------------------------------------------------
 
-Autenticação
+Autenticação / Segurança na API:
 
 6.1 Autenticacao Basica.
+
+Erro:  java.lang.IllegalArgumentException: There is no PasswordEncoder mapped for the id "null"
+->   https://mkyong.com/spring-boot/spring-security-there-is-no-passwordencoder-mapped-for-the-id-null/
+
+
+6.2 - OAuth  2 : framework de autorização.
+
+Exemplo: -> aplicações terceiras acessar informações sem informar seu usuário ou senha.
+-> mas existe vários fluxos.
+
+Erro:
+Field authenticationManager in com.example.demo.config.AuthorizationServerConfig required a bean of type 'org.springframework.security.authentication.AuthenticationManager' that could not be found.
+
+
+Erro: Encoded password does not look like BCrypt
+
+
+<dependency>
+	<groupId>org.springframework.security.oauth</groupId>
+	<artifactId>spring-security-oauth2</artifactId>
+	<version>2.3.3.RELEASE</version>
+</dependency>
